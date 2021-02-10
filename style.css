@@ -5,3 +5,17 @@
     grid-gap: 10px;
 
 }
+#meal-container{
+    margin: 20px;
+    width: 400px;
+    padding: 5px;
+}
+.mealName{
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+#meal-container .mealName img{
+    width: 250px;
+    border-radius: 10px;
+}
