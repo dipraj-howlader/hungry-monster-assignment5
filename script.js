@@ -38,25 +38,29 @@ const displayMeal = meal => {
 for (let j = 0; j < 8; j++) {
     var url = 'https://www.themealdb.com/api/json/v1/1/random.php';
     fetch(url)
-    .then(res => res.json())
-    .then(data => allMealList(data))
+        .then(res => res.json())
+        .then(data => allMealList(data))
 }
-    
 
-const allMealList = $meal => {
+
+const allMealList = meal => {
     const listOfMeal = document.getElementById('all-meals');
 
 
-        const newListDiv = document.createElement('div');
-        newListDiv.className = 'mealsInfo';
-        const divOfMeal = `
-    <img src="${$meal.meals[0].strMealThumb}">
-    <h3>${$meal.meals[0].strMeal}</h3>
+    const newListDiv = document.createElement('div');
+    newListDiv.className = 'mealsInfo';
+    const divOfMeal = `
+    <img src="${meal.meals[0].strMealThumb}">
+    <p id="meal${meal.meals[0].idMeal}">${meal.meals[0].strMeal}</p>
 
     `
-        newListDiv.innerHTML = divOfMeal;
-        listOfMeal.appendChild(newListDiv);
-    
-
+    newListDiv.innerHTML = divOfMeal;
+    listOfMeal.appendChild(newListDiv);
+    const clickMeal = document.getElementById(`meal${meal.meals[0].idMeal}`);
+    clickMeal.addEventListener('click', function () {
+        const mealName = clickMeal.innerText;
+        displayMeal(meal);
+    });
 
 }
+
