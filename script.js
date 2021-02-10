@@ -1,6 +1,6 @@
 document.getElementById('search-btn').addEventListener('click', function () {
     const mealName = document.getElementById('input-meal').value;
-    const link = 'https://www.themealdb.com/api/json/v1/1/search.php?s='+ mealName;
+    const link = 'https://www.themealdb.com/api/json/v1/1/search.php?s=' + mealName;
     fetch(link)
         .then(res => res.json())
         .then(data => displayMeal(data))
@@ -32,4 +32,31 @@ const displayMeal = meal => {
     newMealDiv.innerHTML = mealInfo;
     mealDiv.appendChild(newMealDiv);
 }
+
+//second part
+
+for (let j = 0; j < 8; j++) {
+    var url = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    fetch(url)
+    .then(res => res.json())
+    .then(data => allMealList(data))
+}
     
+
+const allMealList = $meal => {
+    const listOfMeal = document.getElementById('all-meals');
+
+
+        const newListDiv = document.createElement('div');
+        newListDiv.className = 'mealsInfo';
+        const divOfMeal = `
+    <img src="${$meal.meals[0].strMealThumb}">
+    <h3>${$meal.meals[0].strMeal}</h3>
+
+    `
+        newListDiv.innerHTML = divOfMeal;
+        listOfMeal.appendChild(newListDiv);
+    
+
+
+}
